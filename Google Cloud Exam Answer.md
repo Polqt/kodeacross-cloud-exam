@@ -6,7 +6,7 @@ For chat and live map updates, I would keep a dedicated WebSocket service on Clo
 
 ## 1. High-Level Architecture
 
-The architecture diagram is in `architecture.drawio`.
+The architecture diagram is in [`architecture.drawio`](architecture.drawio), and I also hosted a copy here for easy review: https://drive.google.com/file/d/1W-A7AF4-bzAHqoQuwrTF0YrMQ5xXOi7X/view?usp=sharing.
 
 I would keep AgriConnect on one simple path: users hit a global external HTTPS load balancer protected by Cloud Armor, static assets are served through Cloud CDN from Cloud Storage, and dynamic traffic lands on Cloud Run services in `asia-southeast1` with a warm standby in `asia-east1` for regional recovery. That keeps the app close to the Philippines, avoids overloading the origin, and gives me a clear failover story if one region is unhealthy.
 
